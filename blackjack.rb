@@ -1,8 +1,6 @@
-# Needless to say, this is not currently funtional. Still a work-in-progress.
-
 class Cards
   attr_accessor :deck, :rank, :suit
-
+  
   def initialize(deck, rank, suit)
     @deck = deck
     @rank = rank
@@ -35,12 +33,10 @@ class Cards
     end
   end
 end
-dek = Cards.new
-dek.run
- dek.run
-dek.shuffle!
-puts @deck = dek.deck
-
+# dek = Cards.new
+# dek.run
+# dek.shuffle!
+# puts @deck = dek.deck
 
 class Game
   attr_accesor :player_hand, :dealer_hand, :player_hand_points, :dealer_hand_points, :pot
@@ -65,11 +61,7 @@ class Game
     @dealer_card_2 = @deck.pop
     # in real life, the dealer's second card is face up (so that both dealer and human player can see it). IN THE GAME: notify player what the dealer's card is
   end
-
-#make each hand an empty array initially
-#that you then fill with two cards,
-#and then additional cards if necessary
-
+#make each hand an empty array initially, that you then fill with two cards, and then additional cards if necessary
   def merge_cards_to_hands
     @player_hand = []
      [@player_card_1 + @player_card_2 + n]
@@ -129,9 +121,7 @@ class Game
     if @player_hand_points < 21
     end
   end
-
     #player could potentially hit again to receive a fourth card, so should allow for that possibility
-
   def determining_winner
     @player_win
       if @player_hand_points = 21 && @dealer_hand_points < 21
@@ -173,17 +163,15 @@ class Game
   end
 end
 
-
 class NewGame
-
   def ask_for_new_game
     puts "Would you like to play again? (Y)es or (n)o?"
-      new_game_response = gets.chomp.downcase!
-        if new_game_response == "y"
-            Cards.new
-          #set loop to start the game over again. This will require collecting the cards and shuffling them again.)
-        if new_game_response == "n"
-          exit
-        end
+    new_game_response = gets.chomp.downcase!
+      if new_game_response == "y"
+          Cards.new
+        #set loop to start the game over again. This will require collecting the cards and shuffling them again.)
+      if new_game_response == "n"
+        exit
+      end
   end
 end
