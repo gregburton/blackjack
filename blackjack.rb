@@ -1,11 +1,14 @@
-class Cards
-  attr_accessor :deck, :rank, :suit
+class Card
+  attr_accessor :rank, :suit
 
-  def initialize(deck, rank, suit)
-    @deck = deck
+  def initialize(rank, suit)
     @rank = rank
     @suit = suit
   end
+end
+
+class Deck
+  attr_accessor :deck
 
   def run
     build_deck
