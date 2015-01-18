@@ -10,21 +10,28 @@ end
 class Deck
   attr_accessor :deck
 
-  def run
-    build_deck
-    card_points
-  end
-
-  def build_deck
+  def initialize(new_decks)
     @deck = []
-    @rank = %w(2 3 4 5 6 7 8 9 10 J Q K A)
-    @suit = %w(Hearts Spades Diamonds Clubs)
-    if rank.each do |rank|
-      suit.each do |suit|
-      deck << "#{rank} of #{suit}"
+    @ranks = %w(2 3 4 5 6 7 8 9 10 J Q K A)
+    @suits = %w(Hearts Spades Diamonds Clubs)
+
+    new_decks.times do
+      @ranks.each do |rank|
+        @suits.each do |suit|
+          @deck << Card.new(rank,suit)
+        end
+      end
     end
   end
-#I need to figure out how to get these values to apply to the cards
+end
+
+
+class Hand
+  attr_accessor :hand, :card_points
+
+  def initialize
+  end
+
   def card_points
     if @rank == "J" || @rank == "Q" || @rank == "K"
       points = 10
@@ -34,17 +41,12 @@ class Deck
       points = rank.to_i
     end
   end
-end
-
-dek = Cards.new
-dek.run
- dek.run
-dek.shuffle!
-puts @deck = dek.deck
+end  
 
 
 class Game
-  attr_accesor :player_hand, :dealer_hand, :player_hand_points, :dealer_hand_points, :pot
+  def intialize
+  end
 
   def determine_pot_balance
     @pot = pot
@@ -59,6 +61,7 @@ class Game
   end
 
   def deal_cards
+    @deck.shuffle
     @player_card_1 = @deck.pop
     @dealer_card_1 = @deck.pop
     # in real life the dealer's first card is face down, so player can't see it (so don't immediately reveal what the card is to the player)
