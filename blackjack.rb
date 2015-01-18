@@ -25,11 +25,11 @@ class Deck
   end
 end
 
-
 class Hand
   attr_accessor :hand, :card_points
 
   def initialize
+    @hand = []
   end
 
   def card_points
@@ -46,6 +46,10 @@ end
 
 class Game
   def intialize
+    @deck = Deck.new
+    @deck.shuffle
+    @pot = Pot.new
+    @bet = 10
   end
 
   def determine_pot_balance
@@ -54,14 +58,12 @@ class Game
     initial_balance = "100".to_i
     bet = "10".to_i
     pot = (initial_balance - bet)
-    if pot == 0
-      puts "You don't have any more money to bet with. Game over!"
-      exit
+    if @bet > @pot.balance
+      puts "Your pot is empty, so you can't place a bet. Game over!"
     end
   end
 
   def deal_cards
-    @deck.shuffle
     @player_card_1 = @deck.pop
     @dealer_card_1 = @deck.pop
     # in real life the dealer's first card is face down, so player can't see it (so don't immediately reveal what the card is to the player)
@@ -139,55 +141,40 @@ class Game
 
   def determining_winner
     @player_win
-      if @player_hand_points = 21 && @dealer_hand_points < 21
-      if 21 > @player_hand_points > @dealer_hand_points
-      if @dealer_hand_points > 21
+      if @player_hand_points = 21 && @dealer_hand_points < 21 || 21 > @player_hand_points > @dealer_hand_points || @dealer_hand_points > 21
       end
-
     @player_tie
-      if @player_hand_points > 21 && @dealer_hand_points > 21
-      if @player_hand_points = @dealer_hand_points
+      if @player_hand_points > 21 && @dealer_hand_points > 21 || @player_hand_points = @dealer_hand_points
       end
-
     @player_loss
-      if @dealer_hand_points = 21 && @player_hand_points < 21
-      if 21 > @dealer_hand_points > @player_hand_points
-      if @player_hand_points > 21
+      if @dealer_hand_points = 21 && @player_hand_points < 21 || 21 > @dealer_hand_points > @player_hand_points || @player_hand_points > 21
       end
-  end
-
-  def congratulate_or_taunt_human
-    if @player_win
-      puts "Congratulations! You won $15 dollars!"
-    elsif @player_tie
-      puts "You tied. Not bad. Not great, either...but not bad."
-    else @player_loss
-      puts "You lost! Sad for you :( You lost $10 dollars."
-    end
   end
 
   def update_pot_based_on_winner
     if @player_win
       @ending_pot = pot + bet + 15
+      puts "Congratulations! You won $15 dollars!"
       #if player loses, pot stays the same. there needs to be a way to carry over this balance to the next game (if another game is desired)
     elsif @player_tie
       @ending_pot = pot + bet #returns bet $ to player
+      puts "You tied. Not bad. Not great, either...but not bad."
     else @dealer_win
-      @ending_pot
+      @ending_pot = pot - bet
+      puts "You lost! Sad for you :( You lost $10 dollars."
     end
   end
 end
 
 class NewGame
-
   def ask_for_new_game
     puts "Would you like to play again? (Y)es or (n)o?"
     new_game_response = gets.chomp.downcase!
     if new_game_response == "y"
       Cards.new
       #set loop to start the game over again. This will require collecting the cards and shuffling them again.)
-    if new_game_response == "n"
-      exit
+    # if new_game_response == "n"
+    #   exit
     else 
       "Please specify (y)es or (n)o."
     end
