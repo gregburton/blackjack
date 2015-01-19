@@ -39,7 +39,7 @@ class Hand
     if @rank == "J" || @rank == "Q" || @rank == "K"
       points += 10
     elsif @rank == "A"
-      points += 1,11
+      points += 1 || points +=11
     else
       points += @rank
     end
@@ -119,6 +119,7 @@ class Game
         @player_card_3 = @deck.pop
         puts "The dealer also has #{dealer_card_1}."
       end
+    end
   end
 
   def determine_if_dealer_hits
