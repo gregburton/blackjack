@@ -1,11 +1,4 @@
-class Card
-  attr_accessor :rank, :suit
-
-  def initialize(rank, suit)
-    @rank = rank
-    @suit = suit
-  end
-end
+require 'pry'
 
 class Deck
   attr_accessor :deck
@@ -25,6 +18,15 @@ class Deck
   end
 end
 
+class Card
+  attr_accessor :rank, :suit
+
+  def initialize(rank, suit)
+    @rank = rank
+    @suit = suit
+  end
+end
+
 class Hand
   attr_accessor :hand, :card_points
 
@@ -33,16 +35,16 @@ class Hand
   end
 
   def card_points
+    points = 0
     if @rank == "J" || @rank == "Q" || @rank == "K"
-      points = 10
+      points += 10
     elsif @rank == "A"
-      points = 1
+      points += 1,11
     else
-      points = rank.to_i
+      points += @rank
     end
   end
 end  
-
 
 class Game
   def intialize
