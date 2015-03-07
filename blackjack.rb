@@ -143,15 +143,13 @@ class Game
     #player could potentially hit again to receive a fourth card, so should allow for that possibility
 
   def determining_winner
-    @player_win
-      if @player_hand_points = 21 && @dealer_hand_points < 21 || 21 > @player_hand_points > @dealer_hand_points || @dealer_hand_points > 21
-      end
-    @player_tie
-      if @player_hand_points > 21 && @dealer_hand_points > 21 || @player_hand_points = @dealer_hand_points
-      end
-    @player_loss
-      if @dealer_hand_points = 21 && @player_hand_points < 21 || 21 > @dealer_hand_points > @player_hand_points || @player_hand_points > 21
-      end
+    if @player_hand_points = 21 && @dealer_hand_points < 21 || 21 > @player_hand_points > @dealer_hand_points || @dealer_hand_points > 21
+      @player_win
+    elsif @player_hand_points > 21 && @dealer_hand_points > 21 || @player_hand_points = @dealer_hand_points
+      @player_tie
+    else @dealer_hand_points = 21 && @player_hand_points < 21 || 21 > @dealer_hand_points > @player_hand_points || @player_hand_points > 21
+      @player_loss
+    end
   end
 
   def update_pot_based_on_winner
