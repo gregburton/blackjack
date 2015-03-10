@@ -59,9 +59,9 @@ class Game
     @initial_balance = initial_balance
     initial_balance = "100".to_i
     bet = "10".to_i
-    pot = (initial_balance - bet)
+    pot = initial_balance - bet
     if @bet > @pot.balance
-      puts "Your pot is empty, so you can't place a bet. Game over!"
+      puts "Your pot is empty. Game over!"
     end
   end
 
@@ -73,10 +73,6 @@ class Game
     @dealer_card_2 = @deck.pop
     # in real life, the dealer's second card is face up (so that both dealer and human player can see it). IN THE GAME: notify player what the dealer's card is
   end
-
-#make each hand an empty array initially
-#that you then fill with two cards,
-#and then additional cards if necessary
 
   def merge_cards_to_hands
     @player_hand = []
