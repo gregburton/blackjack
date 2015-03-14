@@ -9,8 +9,8 @@ class Deck
     @suits = %w(Hearts Spades Diamonds Clubs)
 
     new_decks.times do
-      @ranks.each do |rank|
-        @suits.each do |suit|
+      if @ranks.each do |rank|
+        if @suits.each do |suit|
           @deck << Card.new(rank,suit)
         end
       end
