@@ -8,6 +8,7 @@ class Deck
     @ranks = %w(2 3 4 5 6 7 8 9 10 J Q K A)
     @suits = %w(Hearts Spades Diamonds Clubs)
 
+// this syntax looks very wrong--should be fixed asap
     new_decks.times do
       if @ranks.each do |rank|
         if @suits.each do |suit|
