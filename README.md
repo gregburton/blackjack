@@ -1,3 +1,3 @@
 #Blackjack
 
-A Ruby blackjack game to be played in the Terminal.
+A simple Ruby blackjack game.
